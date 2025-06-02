@@ -3,9 +3,11 @@
 import pygame
 import sys
 import random
-from settings import *
-from sprites import Player, Obstacle
-from game_utils import draw_text, create_button
+from settings.settings import *
+from sprites.obstacles import Obstacle
+from sprites.player import Player
+from utils.create_button import create_button
+from utils.draw_text import draw_text
 
 # Inicialização do Pygame
 pygame.init()
@@ -150,7 +152,7 @@ while running:
                 # Se os pés (ajustados) colidem com o bloco em queda
                 # E o fundo do jogador está alinhado com o topo do bloco em queda (confirmando que está em cima)
                 if player_feet_check_rect.colliderect(current_falling_obs.rect) and \
-                   abs(player.rect.bottom - current_falling_obs.rect.top) < 2: # Pequena tolerância para alinhamento
+                    abs(player.rect.bottom - current_falling_obs.rect.top) < 2: # Pequena tolerância para alinhamento
                     is_player_definitively_riding_a_FALLING_block = True
                     break # Encontrou o bloco em que está surfando
         
@@ -173,7 +175,7 @@ while running:
                     current_game_state = GAME_STATE_GAME_OVER
                     break # Processa apenas um acerto danoso por frame e sai se game over
             if current_game_state == GAME_STATE_GAME_OVER: # Checa se o estado mudou para sair do loop de jogo
-                 pass # O loop principal tratará a mudança de estado
+                pass # O loop principal tratará a mudança de estado
 
         # Checar condição de vitória (alcançar altura Y)
         if player.rect.top <= GOAL_HEIGHT_LEVEL_1 and current_game_state == GAME_STATE_PLAYING: # Garante que só vence se ainda estiver jogando

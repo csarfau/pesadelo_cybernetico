@@ -1,5 +1,3 @@
-# settings.py
-
 # --- Constantes do Jogo ---
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
